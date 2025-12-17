@@ -11,30 +11,36 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+        
+        /* Color personalizado Rojo Vino si Tailwind no lo tiene por defecto */
+        .bg-vino { background-color: #800020; }
+        .text-vino { color: #800020; }
+        .border-vino { border-color: #800020; }
+        .ring-vino:focus { --tw-ring-color: #a52a2a; }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen font-sans antialiased text-slate-900">
+<body class="bg-slate-50 min-h-screen font-sans antialiased text-slate-900">
 
     <div id="login-section" class="flex flex-col items-center justify-center min-h-screen p-4">
-        <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
+        <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-2xl border border-slate-100">
             <div class="text-center mb-8">
-                <h1 class="text-3xl font-extrabold text-blue-600 tracking-tight">Sistema PIN</h1>
-                <p class="text-slate-500 mt-2 font-medium">Acceso Restringido</p>
+                <h1 class="text-3xl font-extrabold text-[#800020] tracking-tight">Sistema PIN</h1>
+                <p class="text-slate-400 mt-2 font-medium uppercase text-xs tracking-widest">Acceso Corporativo</p>
             </div>
             
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Correo Corporativo</label>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Correo Electrónico</label>
                     <input type="email" id="email" placeholder="usuario@empresa.com" 
-                           class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                           class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#a52a2a] focus:outline-none transition-all">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Contraseña</label>
                     <input type="password" id="pass" placeholder="••••••••" 
-                           class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                           class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#a52a2a] focus:outline-none transition-all">
                 </div>
                 <button onclick="login()" 
-                        class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 active:scale-[0.98] transition-all shadow-lg shadow-blue-200 mt-4">
+                        class="w-full bg-[#800020] text-white font-bold py-4 rounded-xl hover:bg-[#600018] active:scale-[0.98] transition-all shadow-lg shadow-red-900/20 mt-4">
                     Iniciar Sesión
                 </button>
             </div>
@@ -43,31 +49,31 @@
 
     <div id="query-section" class="hidden max-w-4xl mx-auto p-4 md:p-10">
         <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
-            <div class="text-center md:text-left">
-                <h2 class="text-3xl font-black text-slate-800 tracking-tight">Panel de Consultas</h2>
-                <p class="text-slate-500 font-medium">Búsqueda rápida por IMEI</p>
+            <div class="text-center md:text-left border-l-4 border-[#800020] pl-4">
+                <h2 class="text-3xl font-black text-slate-800 tracking-tight">Consultas de Red</h2>
+                <p class="text-slate-500 font-medium">Gestión de códigos por IMEI</p>
             </div>
             <button onclick="logout()" 
-                    class="w-full md:w-auto bg-white text-slate-600 border border-slate-200 font-bold px-6 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-all shadow-sm">
-                Salir
+                    class="w-full md:w-auto bg-white text-slate-500 border border-slate-200 font-bold px-6 py-2 rounded-xl hover:bg-red-50 hover:text-[#800020] hover:border-[#800020]/30 transition-all shadow-sm text-sm">
+                Cerrar Sesión
             </button>
         </div>
         
         <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 mb-8">
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="relative flex-1">
-                    <input type="text" id="searchInput" placeholder="Ingresa el IMEI de 15 dígitos..." 
-                           class="w-full p-4 pl-5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition-all text-lg font-medium">
+                    <input type="text" id="searchInput" placeholder="IMEI de 15 dígitos..." 
+                           class="w-full p-4 pl-5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#a52a2a] focus:bg-white focus:outline-none transition-all text-lg font-medium">
                 </div>
                 <button onclick="buscarDato()" 
-                        class="bg-slate-900 text-white font-bold px-10 py-4 rounded-2xl hover:bg-blue-600 transition-all shadow-lg active:scale-95">
+                        class="bg-[#800020] text-white font-bold px-10 py-4 rounded-2xl hover:bg-[#600018] transition-all shadow-lg active:scale-95">
                     Consultar
                 </button>
             </div>
             
             <div id="results" class="mt-10 min-h-[100px]">
                 <div class="flex flex-col items-center justify-center text-slate-300 py-10">
-                    <p class="italic text-sm font-medium uppercase tracking-widest">Ingrese un dato para comenzar</p>
+                    <p class="italic text-sm font-medium uppercase tracking-widest">Ingrese un dato para consultar</p>
                 </div>
             </div>
         </div>
@@ -78,6 +84,7 @@
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+        // CONFIGURACIÓN DE TU PROYECTO (Mantenida)
         const firebaseConfig = {
           apiKey: "AIzaSyCLMQL8wtuf2B9e5d2EQOzHjxucrAnoL9U",
           authDomain: "consulta-pin-desbloqueo.firebaseapp.com",
@@ -105,7 +112,7 @@
             try {
                 await signInWithEmailAndPassword(auth, email, pass);
             } catch (error) {
-                alert("Error: Usuario o contraseña incorrectos");
+                alert("Error: Acceso denegado");
             }
         };
 
@@ -114,7 +121,8 @@
             const resDiv = document.getElementById('results');
             if(!texto) return;
 
-            resDiv.innerHTML = `<div class="flex justify-center"><div class="animate-spin rounded-full h-10 w-10 border-4 border-blue-600 border-t-transparent"></div></div>`;
+            // Spinner en color vino
+            resDiv.innerHTML = `<div class="flex justify-center"><div class="animate-spin rounded-full h-10 w-10 border-4 border-[#800020] border-t-transparent"></div></div>`;
 
             try {
                 const q = query(collection(db, "datos"), where("id_consulta", "==", texto));
@@ -122,24 +130,26 @@
                 resDiv.innerHTML = "";
                 
                 if (querySnapshot.empty) {
-                    resDiv.innerHTML = `<div class="p-6 bg-slate-50 text-slate-500 rounded-2xl border-2 border-dashed border-slate-200 text-center font-medium animate-fade-in">No se encontró información para el IMEI: ${texto}</div>`;
+                    resDiv.innerHTML = `<div class="p-6 bg-orange-50 text-orange-700 rounded-2xl border-2 border-dashed border-orange-100 text-center font-medium animate-fade-in text-sm">No se encontró información para el IMEI: ${texto}</div>`;
                 } else {
                     querySnapshot.forEach((doc) => {
                         const data = doc.data();
                         resDiv.innerHTML += `
                             <div class="bg-white p-1 rounded-3xl border border-slate-100 shadow-2xl animate-fade-in">
                                 <div class="p-6 md:p-8">
-                                    <div class="mb-6">
-                                        <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-black uppercase rounded-full tracking-tighter">Modelo Identificado</span>
-                                        <h3 class="text-2xl font-bold text-slate-800 mt-2">${data.modelo || 'Genérico'}</h3>
+                                    <div class="mb-6 flex justify-between items-start">
+                                        <div>
+                                            <span class="px-3 py-1 bg-red-50 text-[#800020] text-[10px] font-black uppercase rounded-full tracking-wider border border-red-100">Modelo Detectado</span>
+                                            <h3 class="text-2xl font-bold text-slate-800 mt-2">${data.modelo || 'Genérico'}</h3>
+                                        </div>
                                     </div>
                                     <div class="relative group cursor-pointer" onclick="copyText('${data.informacion}', this)">
-                                        <div class="bg-slate-900 p-6 rounded-2xl transition-all group-hover:bg-blue-600 flex flex-col items-center justify-center overflow-hidden">
-                                            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2 group-hover:text-blue-100">Click para copiar PIN</p>
-                                            <p class="text-4xl md:text-5xl font-mono font-black text-white tracking-[0.2em]">${data.informacion}</p>
+                                        <div class="bg-slate-900 p-6 rounded-2xl transition-all group-hover:bg-[#800020] flex flex-col items-center justify-center overflow-hidden">
+                                            <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-2 group-hover:text-red-200 transition-colors">Click para copiar PIN</p>
+                                            <p class="text-4xl md:text-5xl font-mono font-black text-white tracking-[0.15em]">${data.informacion}</p>
                                         </div>
-                                        <div class="copy-badge hidden absolute inset-0 bg-green-500 rounded-2xl flex items-center justify-center text-white font-black text-xl animate-fade-in">
-                                            ¡COPIADO!
+                                        <div class="copy-badge hidden absolute inset-0 bg-[#a52a2a] rounded-2xl flex items-center justify-center text-white font-black text-xl animate-fade-in shadow-inner">
+                                            ¡COPIADO AL PORTAPAPELES!
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +157,7 @@
                     });
                 }
             } catch (error) {
-                resDiv.innerHTML = `<p class="text-red-500 text-center font-bold">Error: ${error.message}</p>`;
+                resDiv.innerHTML = `<p class="text-red-500 text-center font-bold">Error de red: ${error.message}</p>`;
             }
         };
 
